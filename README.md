@@ -1,3 +1,6 @@
+# am-cf-linklet
+https://github.com/ansoncloud8/am-cf-linklet
+
 ## 介绍
 
 一个使用 Cloudflare Pages 创建的 URL 缩短器
