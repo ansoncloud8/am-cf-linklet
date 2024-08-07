@@ -1,5 +1,8 @@
-# am-cf-linklet
-https://github.com/ansoncloud8/am-cf-linklet
+# [am-cf-linklet](https://github.com/ansoncloud8/am-cf-linklet)
+▶️ **新人[YouTube](https://youtube.com/@AM_CLUB)** 需要您的支持，请务必帮我**点赞**、**关注**、**打开小铃铛**，***十分感谢！！！*** ✅
+</br>🎁 不要只是下载或Fork。请 **follow** 我的GitHub、给我所有项目一个 **Star** 星星（拜托了）！你的支持是我不断前进的动力！ 💖
+</br>✅**解锁更多技术请访问[【个人博客】](https://am.809098.xyz)**
+#
 
 ## 介绍
 
@@ -80,12 +83,6 @@ Content-Type: application/json
   "link": "https://am.809098.xyz/abc<slug>"
 }
 ```
-
-
-
- #
-▶️ **新人[YouTube](https://youtube.com/@AM_CLUB)** 需要您的支持，请务必帮我**点赞**、**关注**、**打开小铃铛**，***十分感谢！！！*** ✅
-</br>🎁 不要只是下载或Fork。请 **follow** 我的GitHub、给我所有项目一个 **Star** 星星（拜托了）！你的支持是我不断前进的动力！ 💖
   
  # 
 <center><details><summary><strong> [点击展开] 赞赏支持 ~🧧</strong></summary>
