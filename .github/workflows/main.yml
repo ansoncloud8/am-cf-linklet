@@ -1,0 +1,28 @@
+name: Push to Another Repository
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  push-to-another-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+ 
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@example.com"
+      - name: Push to Another Repository
+        env:
+          ANOTHER_REPO_URL: "ssh://git@github.com/amclubs/am-cf-linklet.git"
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          git remote add another-repo $ANOTHER_REPO_URL
+          git push another-repo main
+        shell: bash
