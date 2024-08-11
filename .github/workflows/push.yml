@@ -20,7 +20,7 @@ jobs:
           git config --global user.email "github-actions@example.com"
       - name: Push to Another Repository
         env:
-          ANOTHER_REPO_URL: "ssh://git@github.com/amclubs/am-cf-linklet.git"
+          ANOTHER_REPO_URL: "git@github.com:amclubs/am-cf-linklet.git"
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           git remote add another-repo $ANOTHER_REPO_URL
