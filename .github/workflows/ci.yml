@@ -22,7 +22,7 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@target-branch
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: .
           destination-github-username: 'amclubs'
