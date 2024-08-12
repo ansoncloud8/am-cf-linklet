@@ -1,28 +1,32 @@
-name: Push to Another Repository
+name: Repository Sync
  
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  repository_dispatch:
+    types: [ sync_repos ]
  
 jobs:
-  push-to-another-repository:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-        with:
-          ref: main
+    - name: Checkout Target Repository
+      uses: actions/checkout@v2
+      with:
+        repository: amclubs/am-cf-linklet
+        ref: main
+        token: ${{ secrets.ACCESS_TOKEN }}
  
-      - name: Setup Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@example.com"
-      - name: Push to Another Repository
-        env:
-          ANOTHER_REPO_URL: "git@github.com:amclubs/am-cf-linklet.git"
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          git remote add another-repo $ANOTHER_REPO_URL
-          git push another-repo main
-        shell: bash
+    - name: Setup Git
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github@github.actions"
+    - name: Sync Changes
+      run: |
+        git fetch --all
+        git reset --hard origin/main
+        git pull origin main
+    - name: Push Changes to Target Repository
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.ACCESS_TOKEN }}
