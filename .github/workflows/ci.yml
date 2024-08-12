@@ -9,14 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: pandoc/latex    # "ubuntu" is a more generic container
-                               # using "pandoc/latex" because of dependencies
-                               # used in the specific "build.sh"
+    container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
+
+      # 安装 rsync
+      - name: Install rsync
+        run: apt-get update && apt-get install -y rsync
+
       - name: creates output
-        run:  sh ./build.sh # some command from your repository that creates
+        run: sh ./build.sh  # some command from your repository that creates
                             # output to "source-directory" ("output" in the example)
+
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
