@@ -8,4 +8,4 @@ echo "Generating output..."
 
 # 这里是同步代码库的逻辑
 echo "Syncing repository..."
-rsync -av --delete . /path/to/sync/location
+rsync -av --delete . .
