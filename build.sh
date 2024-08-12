@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# 如果你的 build.sh 目前只是生成一些输出文件，你可以保留这些逻辑
+# 安装 rsync
+echo "Installing rsync..."
+apt-get update && apt-get install -y rsync
 
-# 例如生成一些内容
-echo "Generating output..."
+# 你现有的构建逻辑
+echo "Running build script..."
 # ./your_build_command
 
-# 这里是同步代码库的逻辑
+# 同步所有内容到目标目录（此处为当前目录）
 echo "Syncing repository..."
 rsync -av --delete . .
