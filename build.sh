@@ -1,22 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-# 安装 rsync
-echo "Installing rsync..."
-apt-get update && apt-get install -y rsync
+# This is an example of some "process". Here it uses
+# pandoc to convert from MarkDown to different formats
+# and saves the output into "output_temp"
 
-# 清理工作区，确保没有未跟踪的文件
-echo "Cleaning working directory..."
-git clean -fd
+OUTPUT_DIR="output_temp"
 
-# 你现有的构建逻辑
-echo "Running build script..."
-# ./your_build_command
+mkdir "$OUTPUT_DIR"
 
-# 同步所有内容到目标目录（此处为当前目录）
-echo "Syncing repository..."
-rsync -av --delete . .
 
-echo "Checking for changes..."
-git status
-git add .
-git diff --cached
+date > "$OUTPUT_DIR"/.build_date.txt
+
+echo "generated_at: $(date)" > variables.yml
+
+#mustache variables.yml index.output.html > "$OUTPUT_DIR"/index.html
+#mustache variables.yml README.output.md > "$OUTPUT_DIR"/README.md
