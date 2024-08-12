@@ -23,7 +23,8 @@ jobs:
         run: |
           git status
           git add .
-          git commit -m "Update files" || echo "No changes to commit"
+          git diff --cached
+          git commit --allow-empty -m "Update files" || echo "No changes to commit"
 
       - name: Push to another repository
         uses: cpina/github-action-push-to-another-repository@main
