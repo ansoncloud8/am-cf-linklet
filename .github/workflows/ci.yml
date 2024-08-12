@@ -1,3 +1,5 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
 
 on:
@@ -9,31 +11,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
-
-      # 安装 rsync
-      - name: Install rsync
-        run: sudo apt-get update && sudo apt-get install -y rsync
-
-      - name: Run build script
-        run: sh ./build.sh
-
-      - name: Check for changes
-        run: |
-          git status
-          git add .
-          git diff --cached
-          git commit --allow-empty -m "Update files" || echo "No changes to commit"
-
-      - name: Push to another repository
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Install mustache (to update the date)
+        run:  apk add ruby && gem install mustache
+      - name: creates output
+        run:  sh ./build.sh
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@target-branch
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: .
           destination-github-username: 'amclubs'
           destination-repository-name: 'am-cf-linklet'
-          user-email: ansoncloud8@gmail.com
+          user-email: action@ci.github
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
           target-branch: main
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
