@@ -9,13 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
-
+      
       # 安装 rsync
       - name: Install rsync
-        run: apt-get update && apt-get install -y rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
 
       - name: creates output
         run: sh ./build.sh  # some command from your repository that creates
