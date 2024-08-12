@@ -15,3 +15,8 @@ echo "Running build script..."
 # 同步所有内容到目标目录（此处为当前目录）
 echo "Syncing repository..."
 rsync -av --delete . .
+
+echo "Checking for changes..."
+git status
+git add .
+git diff --cached
