@@ -11,16 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       # 安装 rsync
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
 
-      - name: creates output
-        run: sh ./build.sh  # some command from your repository that creates
-                            # output to "source-directory" ("output" in the example)
+      - name: Run build script
+        run: sh ./build.sh
 
-      - name: Pushes to another repository
+      - name: Check for changes
+        run: |
+          git status
+          git add .
+          git commit -m "Update files" || echo "No changes to commit"
+
+      - name: Push to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
