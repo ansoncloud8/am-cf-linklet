@@ -4,6 +4,10 @@
 echo "Installing rsync..."
 apt-get update && apt-get install -y rsync
 
+# 清理工作区，确保没有未跟踪的文件
+echo "Cleaning working directory..."
+git clean -fd
+
 # 你现有的构建逻辑
 echo "Running build script..."
 # ./your_build_command
